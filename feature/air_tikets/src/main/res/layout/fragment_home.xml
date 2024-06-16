@@ -6,14 +6,16 @@
     tools:context=".ui.home.HomeFragment"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="20dp">
+    android:padding="15dp">
 
     <TextView
+        android:textAlignment="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Поиск дешёвых авиабилетов"/>
+        android:text="Поиск дешёвых\nавиабилетов"/>
 
     <FrameLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_primary_shape">
@@ -64,14 +66,31 @@
     </FrameLayout>
 
     <TextView
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Музыкально отлететь"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="15dp"
         android:id="@+id/rvMusicRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"/>
+
+    <Button
+        android:layout_marginTop="15dp"
+        android:text="Показать все места"
+        android:textStyle="italic"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:text="Ваш первый раз"
+        android:textColor="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

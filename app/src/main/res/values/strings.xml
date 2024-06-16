@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile">Профиль</string>
+    <string name="subs">Подписки</string>
+    <string name="nutshell">Короче</string>
+    <string name="hotels">Отели</string>
+    <string name="tickets">Авиабилеты</string>
+</resources>
