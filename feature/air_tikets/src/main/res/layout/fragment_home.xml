@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Поиск дешёвых авиабилетов"
-        android:textSize="22sp"/>
+        android:text="Поиск дешёвых авиабилетов"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -64,7 +64,14 @@
     </FrameLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Музыкально отлететь"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMusicRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"/>
+
 </LinearLayout>
