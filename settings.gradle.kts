@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "TestAirApp"
 include(":app")
- 
+include(":feature:air_tikets")
+include(":ui")

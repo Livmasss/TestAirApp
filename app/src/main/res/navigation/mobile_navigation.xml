@@ -7,19 +7,27 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.livmas.testairapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:name="com.livmas.air_tikets.ui.home.HomeFragment"
+        android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.livmas.testairapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/navigation_hotels"
+        android:name="com.livmas.testairapp.ui.hotels.HotelsFragment"
+        android:label="fragment_hotels"
+        tools:layout="@layout/fragment_hotels" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.livmas.testairapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_nutshell"
+        android:name="com.livmas.testairapp.ui.nutshell.NutshellFragment"
+        android:label="fragment_nutshell"
+        tools:layout="@layout/fragment_nutshell" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.livmas.testairapp.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_subscribes"
+        android:name="com.livmas.testairapp.ui.subscribes.SubscribesFragment"
+        android:label="fragment_subscribes"
+        tools:layout="@layout/fragment_subscribes" />
 </navigation>
