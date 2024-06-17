@@ -10,9 +10,11 @@ import com.livmas.air_tikets.databinding.FragmentHomeBinding
 import com.livmas.air_tikets.ui.home.music_adapter.HorizontalMarginItemDecoration
 import com.livmas.air_tikets.ui.home.music_adapter.MusicItemModel
 import com.livmas.air_tikets.ui.home.music_adapter.MusicRecyclerAdapter
+import com.livmas.ui.MyTextWatcher
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -29,6 +31,11 @@ class HomeFragment : Fragment() {
         setupViews()
     }
 
+    override fun onStop() {
+        super.onStop()
+        viewModel.saveStartCity()
+    }
+
     private fun setupViews() {
         setupRecyclerView()
         setupFromEditTextView()
@@ -38,7 +45,7 @@ class HomeFragment : Fragment() {
         val rvAdapter = MusicRecyclerAdapter(listOf(
             MusicItemModel(0, "Дора", "Питер", 5000),
             MusicItemModel(1, "Типы эти", "Москва", 4550),
-            MusicItemModel(2, "Лампа бикта", "Росв на Дону ставит раком всю страну", 7000)
+            MusicItemModel(2, "Лампа бикта", "Ростов на Дону ставит раком всю страну", 7000)
         ))
         val manager = LinearLayoutManager(requireContext())
         manager.orientation = LinearLayoutManager.HORIZONTAL
@@ -51,10 +58,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupFromEditTextView() {
-
+        binding.etCityFrom.addTextChangedListener(
+            MyTextWatcher{ viewModel.startCity.postValue(it) }
+        )
     }
 
     private fun setupToEditTextView() {
-
+        binding.etCityTo.addTextChangedListener(
+            MyTextWatcher{ viewModel.destination.postValue(it) }
+        )
     }
 }

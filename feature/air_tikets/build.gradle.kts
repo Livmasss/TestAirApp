@@ -32,13 +32,15 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 }
 
 dependencies {
     implementation(project(":ui"))
     implementation(project(":utils"))
+
+    val koinVersion = "3.5.6"
+    implementation("io.insert-koin:koin-android:$koinVersion")
 
     implementation("com.google.android.material:material:1.6.0")
 
