@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupViews()
+        setupObservers()
     }
 
     override fun onStop() {
@@ -38,8 +39,8 @@ class HomeFragment : Fragment() {
 
     private fun setupViews() {
         setupRecyclerView()
-        setupFromEditTextView()
-        setupToEditTextView()
+        setupStartCityEditTextView()
+        setupDestinationEditTextView()
     }
     private fun setupRecyclerView() {
         val rvAdapter = MusicRecyclerAdapter(listOf(
@@ -57,15 +58,27 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupFromEditTextView() {
+    private fun setupStartCityEditTextView() {
+        viewModel.readStartCity()
+
         binding.etCityFrom.addTextChangedListener(
             MyTextWatcher{ viewModel.startCity.postValue(it) }
         )
     }
 
-    private fun setupToEditTextView() {
+    private fun setupDestinationEditTextView() {
         binding.etCityTo.addTextChangedListener(
             MyTextWatcher{ viewModel.destination.postValue(it) }
         )
+    }
+
+    private fun setupObservers() {
+        setupStartCityObserver()
+    }
+
+    private fun setupStartCityObserver() {
+        viewModel.initialStartCity.observe(viewLifecycleOwner) {
+            binding.etCityFrom.setText(it)
+        }
     }
 }
