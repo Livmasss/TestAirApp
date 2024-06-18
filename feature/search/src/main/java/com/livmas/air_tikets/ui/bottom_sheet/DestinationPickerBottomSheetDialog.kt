@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -125,7 +126,11 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
             DestinationModel("Стамбул", "Популярное направление", R.drawable.istambul),
             DestinationModel("Сочи", "Популярное направление", R.drawable.sochi),
             DestinationModel("Пхукет", "Популярное направление", R.drawable.phuket),
-        ))
+        )) {
+            // OnClickListener
+            val tvDestination = it.findViewById<TextView>(R.id.tvTitle)
+            binding.etCityTo.setText(tvDestination.text.toString())
+        }
         val manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val dividerDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         val marginDecoration = VerticalMarginItemDecoration(
@@ -145,7 +150,7 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
             navigate(actionId)
             dismiss()
         }
-        catch (e: Exception) {}
+        catch (ignore: Exception) {}
     }
 
     private fun initText() {

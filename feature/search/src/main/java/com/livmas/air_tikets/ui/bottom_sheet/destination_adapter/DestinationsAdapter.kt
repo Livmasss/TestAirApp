@@ -1,12 +1,14 @@
 package com.livmas.air_tikets.ui.bottom_sheet.destination_adapter
 
 import android.view.LayoutInflater
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.databinding.DestinationItemLayoutBinding
 
 internal class DestinationsAdapter(
-    private val data: List<DestinationModel>
+    private val data: List<DestinationModel>,
+    private val onItemSelectedListener: OnClickListener
 ): RecyclerView.Adapter<DestinationsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: DestinationItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DestinationModel) {
@@ -14,6 +16,8 @@ internal class DestinationsAdapter(
                 tvTitle.text = item.title
                 tvSubtitle.text = item.subTitle
                 ivImage.setImageResource(item.imageId)
+
+                root.setOnClickListener(onItemSelectedListener)
             }
         }
     }
