@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.databinding.FragmentHomeBinding
-import com.livmas.air_tikets.ui.bottom_sheet.DestinationPickerBottomSheetDialog
+import com.livmas.air_tikets.ui.destinations.DestinationPickerBottomSheetDialog
 import com.livmas.air_tikets.ui.SearchViewModel
 import com.livmas.ui.recycler_decorations.HorizontalMarginItemDecoration
 import com.livmas.air_tikets.ui.home.music_adapter.MusicItemModel

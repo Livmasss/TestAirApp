@@ -1,4 +1,4 @@
-package com.livmas.air_tikets.ui.bottom_sheet.destination_adapter
+package com.livmas.air_tikets.ui.destinations.adapter
 
 import android.view.LayoutInflater
 import android.view.View.OnClickListener

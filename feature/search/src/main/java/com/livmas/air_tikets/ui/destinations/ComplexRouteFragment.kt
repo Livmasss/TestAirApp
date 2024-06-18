@@ -1,4 +1,4 @@
-package com.livmas.air_tikets.ui.bottom_sheet
+package com.livmas.air_tikets.ui.destinations
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

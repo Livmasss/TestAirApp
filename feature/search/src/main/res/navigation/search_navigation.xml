@@ -22,21 +22,29 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_weekend"
             app:destination="@id/fragment_weekend" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_flights"
+            app:destination="@id/fragment_flights" />
     </fragment>
     <fragment
         android:id="@+id/fragment_anywhere"
-        android:name="com.livmas.air_tikets.ui.bottom_sheet.AnywhereFragment"
+        android:name="com.livmas.air_tikets.ui.destinations.AnywhereFragment"
         android:label="AnywhereFragment" />
     <fragment
         android:id="@+id/fragment_complex_route"
-        android:name="com.livmas.air_tikets.ui.bottom_sheet.ComplexRouteFragment"
+        android:name="com.livmas.air_tikets.ui.destinations.ComplexRouteFragment"
         android:label="ComplexRouteFragment" />
     <fragment
         android:id="@+id/fragment_hot_tickets"
-        android:name="com.livmas.air_tikets.ui.bottom_sheet.HotTicketsFragment"
+        android:name="com.livmas.air_tikets.ui.destinations.HotTicketsFragment"
         android:label="HotTicketsFragment" />
     <fragment
         android:id="@+id/fragment_weekend"
-        android:name="com.livmas.air_tikets.ui.bottom_sheet.WeekendFragment"
+        android:name="com.livmas.air_tikets.ui.destinations.WeekendFragment"
         android:label="WeekendFragment" />
+    <fragment
+        android:id="@+id/fragment_flights"
+        android:name="com.livmas.air_tikets.ui.flights.FlightsFragment"
+        android:label="fragment_flights"
+        tools:layout="@layout/fragment_flights" />
 </navigation>

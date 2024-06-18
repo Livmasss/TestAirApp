@@ -1,4 +1,4 @@
-package com.livmas.air_tikets.ui.bottom_sheet.destination_adapter
+package com.livmas.air_tikets.ui.destinations.adapter
 
 internal data class DestinationModel (
     val title: String,

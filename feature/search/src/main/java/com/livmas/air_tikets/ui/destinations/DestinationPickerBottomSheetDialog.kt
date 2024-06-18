@@ -1,4 +1,4 @@
-package com.livmas.air_tikets.ui.bottom_sheet
+package com.livmas.air_tikets.ui.destinations
 
 import android.os.Bundle
 import android.util.Log
@@ -16,8 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.DestinationPickerBottomsheetFragmentBinding
 import com.livmas.air_tikets.ui.SearchViewModel
-import com.livmas.air_tikets.ui.bottom_sheet.destination_adapter.DestinationModel
-import com.livmas.air_tikets.ui.bottom_sheet.destination_adapter.DestinationsAdapter
+import com.livmas.air_tikets.ui.destinations.adapter.DestinationModel
+import com.livmas.air_tikets.ui.destinations.adapter.DestinationsAdapter
 import com.livmas.ui.MyTextWatcher
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -76,7 +76,7 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
 
         binding.apply{
             btnComplexRoute.setOnClickListener {
-                navController.navigateToTab(R.id.action_fragment_home_to_fragment_complex_route)
+                navController.navigateFromModal(R.id.action_fragment_home_to_fragment_complex_route)
             }
             btnAnywhere.setOnClickListener {
                 val text = resources.getString(R.string.label_anywhere)
@@ -84,10 +84,10 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                 viewModel.destination.postValue(text)
             }
             btnWeekend.setOnClickListener {
-                navController.navigateToTab(R.id.action_fragment_home_to_fragment_weekend)
+                navController.navigateFromModal(R.id.action_fragment_home_to_fragment_weekend)
             }
             btnHotTickets.setOnClickListener {
-                navController.navigateToTab(R.id.action_fragment_home_to_fragment_hot_tickets)
+                navController.navigateFromModal(R.id.action_fragment_home_to_fragment_hot_tickets)
             }
         }
     }
@@ -130,6 +130,7 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
             // OnClickListener
             val tvDestination = it.findViewById<TextView>(R.id.tvTitle)
             binding.etCityTo.setText(tvDestination.text.toString())
+            findNavController().navigateFromModal(R.id.action_fragment_home_to_fragment_flights)
         }
         val manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val dividerDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
@@ -145,12 +146,14 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun NavController.navigateToTab(actionId: Int) {
+    private fun NavController.navigateFromModal(actionId: Int) {
         try {
             navigate(actionId)
             dismiss()
         }
-        catch (ignore: Exception) {}
+        catch (ignore: Exception) {
+            // Do thing if navigation fails
+        }
     }
 
     private fun initText() {
