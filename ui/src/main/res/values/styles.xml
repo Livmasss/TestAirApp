@@ -11,6 +11,12 @@
         </item>
     </style>
 
+    <style name="round_shapeable_style">
+        <item name="cornerSize">
+            50%
+        </item>
+    </style>
+
     <style name="AppBottomSheetDialogTheme"
         parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
