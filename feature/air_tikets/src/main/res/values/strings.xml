@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_hot_tickets">Горичие билеты</string>
+    <string name="label_weekend">Выходные</string>
+    <string name="label_anywhere">Куда угодно</string>
+    <string name="label_hard_route">Сложный маршрут</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

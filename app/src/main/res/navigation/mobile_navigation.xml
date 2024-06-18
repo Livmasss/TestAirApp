@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/search_navigation">
 
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.livmas.air_tikets.ui.home.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_hotels"
         android:name="com.livmas.testairapp.ui.hotels.HotelsFragment"
@@ -30,4 +25,5 @@
         android:name="com.livmas.testairapp.ui.subscribes.SubscribesFragment"
         android:label="fragment_subscribes"
         tools:layout="@layout/fragment_subscribes" />
+    <include app:graph="@navigation/search_navigation" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.livmas.air_tikets.ui.home
+package com.livmas.air_tikets.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class SearchViewModel(
     private val readCityUseCase: ReadStartCityUseCase,
     private val saveCityUseCase: SaveStartCityUseCase,
 ) : ViewModel() {

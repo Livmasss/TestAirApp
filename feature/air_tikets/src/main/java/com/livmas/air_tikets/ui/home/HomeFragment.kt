@@ -1,20 +1,23 @@
 package com.livmas.air_tikets.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.databinding.FragmentHomeBinding
+import com.livmas.air_tikets.ui.DestinationPickerBottomSheetDialog
+import com.livmas.air_tikets.ui.SearchViewModel
 import com.livmas.air_tikets.ui.home.music_adapter.HorizontalMarginItemDecoration
 import com.livmas.air_tikets.ui.home.music_adapter.MusicItemModel
 import com.livmas.air_tikets.ui.home.music_adapter.MusicRecyclerAdapter
 import com.livmas.ui.MyTextWatcher
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: SearchViewModel by activityViewModel()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -42,6 +45,7 @@ class HomeFragment : Fragment() {
         setupStartCityEditTextView()
         setupDestinationEditTextView()
     }
+
     private fun setupRecyclerView() {
         val rvAdapter = MusicRecyclerAdapter(listOf(
             MusicItemModel(0, "Дора", "Питер", 5000),
@@ -67,9 +71,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupDestinationEditTextView() {
-        binding.etCityTo.addTextChangedListener(
-            MyTextWatcher{ viewModel.destination.postValue(it) }
-        )
+        binding.etCityTo.apply {
+            addTextChangedListener(
+                MyTextWatcher{ viewModel.destination.postValue(it) }
+            )
+
+            setOnClickListener {
+                Log.d("test", "Listener")
+                val searchModel = DestinationPickerBottomSheetDialog()
+
+                searchModel.show(parentFragmentManager, "search")
+            }
+        }
     }
 
     private fun setupObservers() {
