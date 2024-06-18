@@ -40,7 +40,7 @@ android {
 
 dependencies {
     implementation(project(":ui"))
-    implementation(project(":feature:air_tikets"))
+    implementation(project(":feature:search"))
     implementation(project(":data:core"))
 
     val koinVersion = "3.5.6"

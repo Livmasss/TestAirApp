@@ -15,8 +15,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "TestAirApp"
 include(":app")
-include(":feature:air_tikets")
+include(":feature:search")
 include(":ui")
 include(":utils")
 include(":data:core")
-include(":feature:search")

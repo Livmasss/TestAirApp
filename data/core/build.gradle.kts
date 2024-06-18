@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:air_tikets"))
+    implementation(project(":feature:search"))
     val dataStoreVersion = "1.1.1"
     implementation("androidx.datastore:datastore-preferences:$dataStoreVersion")
 
