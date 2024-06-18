@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.R
@@ -35,6 +36,8 @@ internal class FlightsFragment : Fragment() {
     }
 
     private fun setupViews() {
+        setupBackButton()
+        setupTicketsButton()
         setupRecyclerView()
     }
 
@@ -52,6 +55,18 @@ internal class FlightsFragment : Fragment() {
             layoutManager = manager
             addItemDecoration(dividerDecoration)
             addItemDecoration(marginDecoration)
+        }
+    }
+
+    private fun setupBackButton() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun setupTicketsButton() {
+        binding.btnTickets.setOnClickListener {
+            findNavController().navigate(R.id.action_fragment_flights_to_fragment_tickets)
         }
     }
 }

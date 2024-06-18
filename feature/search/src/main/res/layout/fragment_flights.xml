@@ -15,6 +15,7 @@
         android:orientation="horizontal"
         android:background="@drawable/rounded_primary_shape">
         <ImageView
+            android:id="@+id/btnBack"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_back"/>
@@ -158,6 +159,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnTickets"
         style="@style/DarkBlueButtonStyle"
         android:text="Посмотреть все билеты"
         android:textAllCaps="false"

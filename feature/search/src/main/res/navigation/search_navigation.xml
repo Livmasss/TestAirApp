@@ -46,5 +46,14 @@
         android:id="@+id/fragment_flights"
         android:name="com.livmas.air_tikets.ui.flights.FlightsFragment"
         android:label="fragment_flights"
-        tools:layout="@layout/fragment_flights" />
+        tools:layout="@layout/fragment_flights" >
+        <action
+            android:id="@+id/action_fragment_flights_to_fragment_tickets"
+            app:destination="@id/fragment_tickets" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_tickets"
+        android:name="com.livmas.air_tikets.ui.tickets.TicketsFragment"
+        android:label="fragment_tickets"
+        tools:layout="@layout/fragment_tickets" />
 </navigation>
