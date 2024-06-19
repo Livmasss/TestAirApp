@@ -23,6 +23,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        if (viewModel.destination.value != null)
+            showDialog()
+
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -74,10 +77,7 @@ class HomeFragment : Fragment() {
     private fun setupDestinationEditTextView() {
         binding.etCityTo.apply {
             setOnClickListener {
-                if (DestinationPickerBottomSheetDialog.isOpened)
-                    return@setOnClickListener
-                DestinationPickerBottomSheetDialog().show(parentFragmentManager, "search")
-                DestinationPickerBottomSheetDialog.isOpened = true
+                showDialog()
             }
         }
     }
@@ -100,5 +100,12 @@ class HomeFragment : Fragment() {
         viewModel.destination.observe(viewLifecycleOwner) {
             binding.etCityTo.setText(it)
         }
+    }
+
+    private fun showDialog() {
+        if (DestinationPickerBottomSheetDialog.isOpened)
+            return
+        DestinationPickerBottomSheetDialog().show(parentFragmentManager, "search")
+        DestinationPickerBottomSheetDialog.isOpened = true
     }
 }
