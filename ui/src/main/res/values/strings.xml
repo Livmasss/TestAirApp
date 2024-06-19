@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TestAirApp</string>
     <string name="pattern_from_price">От %1$s ₽</string>
+    <string name="pattern_price">%1$s ₽</string>
 </resources>

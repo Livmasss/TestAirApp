@@ -12,5 +12,7 @@ data class TicketModel(
     val startCity: String,
 
     val timeInTrip: Float,
-    val hasTransfer: Boolean
+    val hasTransfer: Boolean,
+
+    val badge: String? = null
 )

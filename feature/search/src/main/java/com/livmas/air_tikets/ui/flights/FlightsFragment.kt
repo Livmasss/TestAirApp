@@ -18,11 +18,9 @@ import com.livmas.ui.fragemnts.DatePickerFragment
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import com.livmas.utils.DateTimeStringifier
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
 internal class FlightsFragment : Fragment() {
-    private val viewModel: FlightsViewModel by viewModel()
     private val sharedViewModel: SearchViewModel by activityViewModel()
     private lateinit var binding: FragmentFlightsBinding
     private val dateTimeStringifier = DateTimeStringifier()
@@ -39,6 +37,7 @@ internal class FlightsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         dateTimeStringifier.secondColor = ContextCompat.getColor(requireContext(), com.livmas.ui.R.color.light_grey)
+        sharedViewModel.passengersCount.postValue(1)
         setupViews()
         setupObservers()
     }
@@ -67,14 +66,14 @@ internal class FlightsFragment : Fragment() {
     }
 
     private fun setupDatesObservers() {
-        viewModel.flightDate.observe(viewLifecycleOwner) {
+        sharedViewModel.flightDate.observe(viewLifecycleOwner) {
             it?.let {
-                binding.btnFlightDate.text = dateTimeStringifier.stringifyDate(it)
+                binding.btnFlightDate.text = dateTimeStringifier.stringifyDateWithDayOfWeek(it)
             }
         }
-        viewModel.returnFlightDate.observe(viewLifecycleOwner) {
+        sharedViewModel.returnFlightDate.observe(viewLifecycleOwner) {
             it?.let {
-                binding.btnBackTicket.text = dateTimeStringifier.stringifyDate(it)
+                binding.btnBackTicket.text = dateTimeStringifier.stringifyDateWithDayOfWeek(it)
             }
         }
     }
@@ -110,7 +109,7 @@ internal class FlightsFragment : Fragment() {
     private fun setupReturnFlightDateButton() {
         binding.btnBackTicket.setOnClickListener {
             val fragment = DatePickerFragment {
-                viewModel.returnFlightDate.postValue(it)
+                sharedViewModel.returnFlightDate.postValue(it)
             }
             fragment.show(parentFragmentManager, "datePicker")
         }
@@ -119,7 +118,7 @@ internal class FlightsFragment : Fragment() {
     private fun setupFlightDateButton() {
         binding.btnFlightDate.setOnClickListener {
             val fragment = DatePickerFragment {
-                viewModel.flightDate.postValue(it)
+                sharedViewModel.flightDate.postValue(it)
             }
             fragment.show(parentFragmentManager, "datePicker")
         }

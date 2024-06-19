@@ -8,7 +8,7 @@ import android.text.style.ForegroundColorSpan
 import java.util.Calendar
 
 class DateTimeStringifier(var secondColor: Int = Color.LTGRAY) {
-    fun stringifyDate(date: Calendar): SpannableStringBuilder {
+    fun stringifyDateWithDayOfWeek(date: Calendar): SpannableStringBuilder {
         val secondString = DateFormat.format(", EE ", date)
         val secondSpannable = SpannableString(secondString)
         secondSpannable.setSpan(ForegroundColorSpan(secondColor), 0, secondSpannable.length, 0)
@@ -18,6 +18,10 @@ class DateTimeStringifier(var secondColor: Int = Color.LTGRAY) {
             .append(' ')
             .append(DateFormat.format("MMM", date).slice(0..2))
             .append(secondSpannable)
+    }
+
+    fun stringifyDateWithoutDayOfWeek(date: Calendar): String {
+        return DateFormat.format("dd MMMM", date).toString()
     }
 
     fun stringifyTime(c: Calendar): String {

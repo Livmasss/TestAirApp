@@ -10,6 +10,7 @@ import com.livmas.utils.LogTags
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class SearchViewModel(
     private val readCityUseCase: ReadStartCityUseCase,
@@ -23,10 +24,25 @@ class SearchViewModel(
         MutableLiveData(null)
     }
 
+    val startCity: LiveData<String>
+        get() = _startCity
+
     val initialStartCity: LiveData<String>
         get() = _initialStartCity
     private val _initialStartCity: MutableLiveData<String> by lazy {
         MutableLiveData(null)
+    }
+
+    val flightDate: MutableLiveData<Calendar> by lazy {
+        MutableLiveData(Calendar.getInstance())
+    }
+
+    val returnFlightDate: MutableLiveData<Calendar> by lazy {
+        MutableLiveData(null)
+    }
+
+    val passengersCount: MutableLiveData<Int> by lazy {
+        MutableLiveData(0)
     }
 
     fun postStartCity(value: String?) {

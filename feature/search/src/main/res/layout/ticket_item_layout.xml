@@ -1,118 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:paddingHorizontal="10dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_primary_shape"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dummyView">
+
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1000 P"/>
+            android:text="@string/pattern_price" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="#FF5E5E"
+                android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/round_shapeable_style"
-                android:layout_gravity="center"/>
+                android:src="#FF5E5E"
+                app:shapeAppearanceOverlay="@style/round_shapeable_style" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp">
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tvStartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00:00"
-                    android:textSize="16sp"
-                    android:textStyle="italic"/>
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
                 <TextView
                     android:id="@+id/tvStartPoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AER"
-                    android:textSize="16sp"
-                    android:textStyle="italic"
-                    android:textColor="@color/light_grey"/>
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" — "
-                android:textSize="16sp"
-                android:textColor="@color/light_grey"/>
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_end_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="23:59"
-                    android:textSize="16sp"
-                    android:textStyle="italic"/>
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
                 <TextView
                     android:id="@+id/tvEndPoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DME"
-                    android:textSize="16sp"
-                    android:textStyle="italic"
-                    android:textColor="@color/light_grey"/>
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
             </LinearLayout>
-            <Space
-                android:layout_weight="1"
+
+            <View
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_width="0dp"/>
+                android:layout_weight="1"
+                android:minWidth="20dp"/>
+
             <TextView
                 android:id="@+id/tvTimeInTrip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4ч в пути"
-                android:textSize="16sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="/"
-                android:textSize="16sp"
-                android:textColor="@color/light_grey"/>
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvTransfer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Без пересадок"
-                android:textSize="16sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingVertical="3dp"
-        android:paddingHorizontal="10dp"
         android:background="@drawable/round_shape"
         android:backgroundTint="@color/dark_blue"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="3dp"
         android:text="Самый удобный"
         android:textSize="14sp"
-        android:textStyle="italic"/>
-</FrameLayout>
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/dummyView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBadge"
+        app:layout_constraintEnd_toEndOf="@+id/tvBadge"
+        app:layout_constraintStart_toStartOf="@+id/tvBadge"
+        app:layout_constraintTop_toTopOf="@+id/tvBadge" />
+</androidx.constraintlayout.widget.ConstraintLayout>

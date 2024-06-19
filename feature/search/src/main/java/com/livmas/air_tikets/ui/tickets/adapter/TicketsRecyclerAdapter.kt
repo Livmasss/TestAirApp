@@ -1,28 +1,44 @@
 package com.livmas.air_tikets.ui.tickets.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.TicketItemLayoutBinding
 import com.livmas.utils.DateTimeStringifier
 
 internal class TicketsRecyclerAdapter(
+    private val context: Context,
     private val data: List<TicketModel>
 ): RecyclerView.Adapter<TicketsRecyclerAdapter.ViewHolder>() {
     private val stringifier = DateTimeStringifier()
     inner class ViewHolder(private val binding: TicketItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TicketModel) {
             binding.apply {
-                this.tvEndPoint.text = item.endCity
-                this.tvStartPoint.text = item.startCity
+                tvPrice.text = context.resources.getString(
+                    com.livmas.ui.R.string.pattern_price, item.price.toString()
+                )
 
-                this.tvEndTime.text = stringifier.stringifyTime(item.endTime)
-                this.tvStartTime.text = stringifier.stringifyTime(item.startTime)
+                tvEndPoint.text = item.endCity
+                tvStartPoint.text = item.startCity
 
-                this.tvPrice.text = item.price.toString()
-                this.tvTimeInTrip.text = item.timeInTrip.toString()
+                tvEndTime.text = stringifier.stringifyTime(item.endTime)
+                tvStartTime.text = stringifier.stringifyTime(item.startTime)
 
-                this.tvTransfer.text = item.hasTransfer.toString()
+                tvTimeInTrip.text = context.resources.getString(R.string.time_in_trip, item.timeInTrip.toString())
+                tvTransfer.text = context.resources.getString(
+                    if (item.hasTransfer)
+                        R.string.no_transfers
+                    else
+                        R.string.has_transfers
+                )
+
+                if (item.badge.isNullOrEmpty())
+                    tvBadge.visibility = View.GONE
+                else
+                    tvBadge.text = item.badge
             }
         }
     }
