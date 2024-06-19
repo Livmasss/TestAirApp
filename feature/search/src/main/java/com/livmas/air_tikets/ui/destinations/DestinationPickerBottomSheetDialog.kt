@@ -95,7 +95,7 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     private fun setupStartCityEditTextView() {
         binding.etCityFrom.apply {
             addTextChangedListener(
-                MyTextWatcher{ viewModel.startCity.postValue(it) }
+                MyTextWatcher{ viewModel.postStartCity(it) }
             )
         }
     }
@@ -157,7 +157,7 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     private fun initText() {
-        binding.etCityFrom.setText(viewModel.startCity.value)
+        binding.etCityFrom.setText(viewModel._startCity.value)
         binding.etCityTo.setText(viewModel.destination.value)
     }
 }

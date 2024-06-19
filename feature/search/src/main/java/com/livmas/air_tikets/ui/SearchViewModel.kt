@@ -15,11 +15,30 @@ class SearchViewModel(
     private val readCityUseCase: ReadStartCityUseCase,
     private val saveCityUseCase: SaveStartCityUseCase,
 ) : ViewModel() {
+    val destination: MutableLiveData<String> by lazy {
+        MutableLiveData(null)
+    }
+
+    val _startCity: MutableLiveData<String> by lazy {
+        MutableLiveData(null)
+    }
+
+    val initialStartCity: LiveData<String>
+        get() = _initialStartCity
+    private val _initialStartCity: MutableLiveData<String> by lazy {
+        MutableLiveData(null)
+    }
+
+    fun postStartCity(value: String?) {
+        _initialStartCity.postValue(value)
+        _startCity.postValue(value)
+    }
+
     fun saveStartCity() {
         CoroutineScope(Dispatchers.IO).launch {
-            startCity.value?.let { saveCityUseCase.execute(it) }
+            _startCity.value?.let { saveCityUseCase.execute(it) }
         }
-        Log.d(LogTags.IO_LOCAL, "Start city saved: ${startCity.value}")
+        Log.d(LogTags.IO_LOCAL, "Start city saved: ${_startCity.value}")
     }
 
     fun readStartCity() {
@@ -27,19 +46,12 @@ class SearchViewModel(
             val result = readCityUseCase.execute()
             _initialStartCity.postValue(result)
         }
-        Log.d(LogTags.IO_LOCAL, "Start city read: ${startCity.value}")
-    }
-    val destination: MutableLiveData<String> by lazy {
-        MutableLiveData(null)
+        Log.d(LogTags.IO_LOCAL, "Start city read: ${_startCity.value}")
     }
 
-    val startCity: MutableLiveData<String> by lazy {
-        MutableLiveData(null)
-    }
-
-    val initialStartCity: LiveData<String>
-        get() = _initialStartCity
-    private val _initialStartCity: MutableLiveData<String> by lazy {
-        MutableLiveData("")
+    fun swapFromAndTo() {
+        val temp = destination.value
+        destination.postValue(_startCity.value)
+        postStartCity(temp)
     }
 }

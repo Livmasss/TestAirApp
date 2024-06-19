@@ -66,7 +66,9 @@ class HomeFragment : Fragment() {
         viewModel.readStartCity()
 
         binding.etCityFrom.addTextChangedListener(
-            MyTextWatcher{ viewModel.startCity.postValue(it) }
+            MyTextWatcher{
+                viewModel.postStartCity(it)
+            }
         )
     }
 
@@ -88,7 +90,10 @@ class HomeFragment : Fragment() {
 
     private fun setupStartCityObserver() {
         viewModel.initialStartCity.observe(viewLifecycleOwner) {
-            binding.etCityFrom.setText(it)
+            if (it != null) {
+                viewModel.initialStartCity.removeObservers(viewLifecycleOwner)
+                binding.etCityFrom.setText(it)
+            }
         }
     }
 

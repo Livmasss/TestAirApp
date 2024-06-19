@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.FragmentFlightsBinding
+import com.livmas.air_tikets.ui.SearchViewModel
 import com.livmas.air_tikets.ui.flights.adapter.FlightModel
 import com.livmas.air_tikets.ui.flights.adapter.FlightsAdapter
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
@@ -19,7 +20,7 @@ import java.util.Calendar
 
 internal class FlightsFragment : Fragment() {
     private val viewModel: FlightsViewModel by viewModel()
-    private val sharedViewModel: FlightsViewModel by activityViewModel()
+    private val sharedViewModel: SearchViewModel by activityViewModel()
     private lateinit var binding: FragmentFlightsBinding
 
     override fun onCreateView(
@@ -33,12 +34,27 @@ internal class FlightsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        setupObservers()
     }
 
     private fun setupViews() {
         setupBackButton()
+        setupSwapButton()
         setupTicketsButton()
         setupRecyclerView()
+    }
+
+    private fun setupObservers() {
+        setupCitiesObservers()
+    }
+
+    private fun setupCitiesObservers() {
+        sharedViewModel.destination.observe(viewLifecycleOwner) {
+            binding.etCityTo.setText(it)
+        }
+        sharedViewModel._startCity.observe(viewLifecycleOwner) {
+            binding.etCityFrom.setText(it)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -61,6 +77,12 @@ internal class FlightsFragment : Fragment() {
     private fun setupBackButton() {
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun setupSwapButton() {
+        binding.btnSwap.setOnClickListener {
+            sharedViewModel.swapFromAndTo()
         }
     }
 
