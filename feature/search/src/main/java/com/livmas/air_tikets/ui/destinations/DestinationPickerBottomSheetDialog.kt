@@ -26,6 +26,9 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     private lateinit var binding : DestinationPickerBottomsheetFragmentBinding
     private val viewModel: SearchViewModel by activityViewModel()
 
+    companion object {
+        var isOpened = false
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DestinationPickerBottomsheetFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -61,6 +64,11 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     override fun onStart() {
         super.onStart()
         initText()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        isOpened = false
     }
 
     private fun setupViews() {
@@ -123,9 +131,9 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
 
     private fun setupAdapter() {
         val myAdapter = DestinationsAdapter(listOf(
-            DestinationModel("Стамбул", "Популярное направление", R.drawable.istambul),
-            DestinationModel("Сочи", "Популярное направление", R.drawable.sochi),
-            DestinationModel("Пхукет", "Популярное направление", R.drawable.phuket),
+            DestinationModel("Стамбул", resources.getString(R.string.popular_dir_message), R.drawable.istambul),
+            DestinationModel("Сочи", resources.getString(R.string.popular_dir_message), R.drawable.sochi),
+            DestinationModel("Пхукет", resources.getString(R.string.popular_dir_message), R.drawable.phuket),
         )) {
             // OnClickListener
             val tvDestination = it.findViewById<TextView>(R.id.tvTitle)

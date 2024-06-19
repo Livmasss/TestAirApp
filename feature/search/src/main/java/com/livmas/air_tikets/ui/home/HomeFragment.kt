@@ -1,19 +1,18 @@
 package com.livmas.air_tikets.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.databinding.FragmentHomeBinding
-import com.livmas.air_tikets.ui.destinations.DestinationPickerBottomSheetDialog
 import com.livmas.air_tikets.ui.SearchViewModel
-import com.livmas.ui.recycler_decorations.HorizontalMarginItemDecoration
+import com.livmas.air_tikets.ui.destinations.DestinationPickerBottomSheetDialog
 import com.livmas.air_tikets.ui.home.music_adapter.MusicItemModel
 import com.livmas.air_tikets.ui.home.music_adapter.MusicRecyclerAdapter
 import com.livmas.ui.MyTextWatcher
+import com.livmas.ui.recycler_decorations.HorizontalMarginItemDecoration
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class HomeFragment : Fragment() {
@@ -75,10 +74,10 @@ class HomeFragment : Fragment() {
     private fun setupDestinationEditTextView() {
         binding.etCityTo.apply {
             setOnClickListener {
-                Log.d("test", "Listener")
-                val searchModel = DestinationPickerBottomSheetDialog()
-
-                searchModel.show(parentFragmentManager, "search")
+                if (DestinationPickerBottomSheetDialog.isOpened)
+                    return@setOnClickListener
+                DestinationPickerBottomSheetDialog().show(parentFragmentManager, "search")
+                DestinationPickerBottomSheetDialog.isOpened = true
             }
         }
     }
