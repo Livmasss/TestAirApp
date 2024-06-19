@@ -1,7 +1,15 @@
 package com.livmas.air_tikets.ui.flights
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.util.Calendar
 
-class FlightsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+internal class FlightsViewModel : ViewModel() {
+    val flightDate: MutableLiveData<Calendar> by lazy {
+        MutableLiveData(Calendar.getInstance())
+    }
+
+    val returnFlightDate: MutableLiveData<Calendar> by lazy {
+        MutableLiveData(null)
+    }
 }

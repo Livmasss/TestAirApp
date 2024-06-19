@@ -9,11 +9,12 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.FlightItemLayoutBinding
-import java.util.Calendar
+import com.livmas.utils.DateTimeStringifier
 
 internal class FlightsAdapter(
     private val context: Context,
-    private val data: List<FlightModel>
+    private val data: List<FlightModel>,
+    private val dateTimeStringifier: DateTimeStringifier
 ): RecyclerView.Adapter<FlightsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: FlightItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: FlightModel) {
@@ -21,7 +22,7 @@ internal class FlightsAdapter(
             binding.tvAirCompany.text = item.company
             binding.tvPrice.text = context.resources.getString(R.string.pattern_open_ticket, item.price.toString())
             binding.tvFlightTimes.text = item.times.joinToString(" ") {
-                "${it.get(Calendar.HOUR)}:${it.get(Calendar.MINUTE)} "
+                dateTimeStringifier.stringifyTime(it)
             }
         }
     }
