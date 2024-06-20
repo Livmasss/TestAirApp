@@ -1,7 +1,7 @@
 package com.livmas.core.repositories
 
-import com.livmas.air_tikets.domain.repositories.CityRepository
 import com.livmas.core.datasources.LocalCityDataSource
+import com.livmas.search.domain.repositories.CityRepository
 
 internal class CityRepositoryImpl(
     private val dataSource: LocalCityDataSource

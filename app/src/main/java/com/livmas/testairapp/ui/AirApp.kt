@@ -1,7 +1,7 @@
 package com.livmas.testairapp.ui
 
 import android.app.Application
-import com.livmas.air_tikets.homeModule
+import com.livmas.search.homeModule
 import com.livmas.core.dataCoreModule
 import com.livmas.search.dataSearchModule
 import org.koin.android.ext.koin.androidContext

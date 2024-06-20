@@ -1,9 +1,9 @@
 package com.livmas.search.mappers
 
 import android.annotation.SuppressLint
-import com.livmas.air_tikets.domain.dtos.FeedElementDTO
-import com.livmas.air_tikets.domain.dtos.FlightDTO
-import com.livmas.air_tikets.domain.dtos.TicketDTO
+import com.livmas.search.domain.dtos.FeedElementDTO
+import com.livmas.search.domain.dtos.FlightDTO
+import com.livmas.search.domain.dtos.TicketDTO
 import com.livmas.search.models.GetFeedResponseBody
 import com.livmas.search.models.GetFlightsResponseBody
 import com.livmas.search.models.GetTicketsResponseBody
@@ -40,8 +40,7 @@ object SearchMapper {
                             time = date
                             this
                         }
-                    }
-                    catch (e: Exception) {
+                    } catch (e: Exception) {
                         null
                     }
                 }
@@ -71,8 +70,8 @@ object SearchMapper {
             TicketDTO(
                 id = it.id,
                 price = it.price.value,
-                startTime =  departureDate,
-                endTime =  arrivalDate,
+                startTime = departureDate,
+                endTime = arrivalDate,
                 startCity = it.departure.town,
                 endCity = it.arrival.town,
                 timeInTrip = timeInTripInterval,
