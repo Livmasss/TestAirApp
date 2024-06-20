@@ -1,9 +1,9 @@
 package com.livmas.search.mappers
 
 import android.annotation.SuppressLint
-import com.livmas.air_tikets.domain.dtos.FeedElementDTO
-import com.livmas.air_tikets.domain.dtos.FlightDTO
-import com.livmas.air_tikets.domain.dtos.TicketDTO
+import com.livmas.search.domain.dtos.FeedElementDTO
+import com.livmas.search.domain.dtos.FlightDTO
+import com.livmas.search.domain.dtos.TicketDTO
 import com.livmas.search.models.GetFeedResponseBody
 import com.livmas.search.models.GetFlightsResponseBody
 import com.livmas.search.models.GetTicketsResponseBody
@@ -15,9 +15,9 @@ object SearchMapper {
     @SuppressLint("SimpleDateFormat")
     val simpleTimeFormat = SimpleDateFormat("HH:mm")
 
-    fun feedResponseToDtoList(model: GetFeedResponseBody): List<FeedElementDTO> =
+    fun feedResponseToDtoList(model: GetFeedResponseBody): List<com.livmas.search.domain.dtos.FeedElementDTO> =
         model.offers.map {
-            FeedElementDTO(
+            com.livmas.search.domain.dtos.FeedElementDTO(
                 it.id,
                 it.title,
                 it.town,
@@ -27,9 +27,9 @@ object SearchMapper {
 
     fun flightsResponseToDto(
         model: GetFlightsResponseBody
-    ): List<FlightDTO> =
+    ): List<com.livmas.search.domain.dtos.FlightDTO> =
         model.ticketsOffers.map {
-            FlightDTO(
+            com.livmas.search.domain.dtos.FlightDTO(
                 it.id,
                 company = it.title,
                 price = it.price.value,
@@ -40,8 +40,7 @@ object SearchMapper {
                             time = date
                             this
                         }
-                    }
-                    catch (e: Exception) {
+                    } catch (e: Exception) {
                         null
                     }
                 }
@@ -50,7 +49,7 @@ object SearchMapper {
 
     fun ticketsResponseToDto(
         model: GetTicketsResponseBody
-    ): List<TicketDTO> =
+    ): List<com.livmas.search.domain.dtos.TicketDTO> =
         model.tickets.map {
             val departureDate = Calendar.getInstance().run{
                 time = it.departure.date
@@ -68,11 +67,11 @@ object SearchMapper {
                 get(Calendar.HOUR_OF_DAY) + get(Calendar.MINUTE) / 60f
             }
 
-            TicketDTO(
+            com.livmas.search.domain.dtos.TicketDTO(
                 id = it.id,
                 price = it.price.value,
-                startTime =  departureDate,
-                endTime =  arrivalDate,
+                startTime = departureDate,
+                endTime = arrivalDate,
                 startCity = it.departure.town,
                 endCity = it.arrival.town,
                 timeInTrip = timeInTripInterval,

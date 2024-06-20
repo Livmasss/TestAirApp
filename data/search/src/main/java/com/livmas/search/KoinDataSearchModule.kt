@@ -1,6 +1,6 @@
 package com.livmas.search
 
-import com.livmas.air_tikets.domain.repositories.SearchRepository
+import com.livmas.search.domain.repositories.SearchRepository
 import com.livmas.core.RetrofitConfig
 import com.livmas.search.apis.SearchAPI
 import com.livmas.search.data_sources.SearchRemoteDataSource
@@ -12,7 +12,7 @@ val dataSearchModule = module {
         RetrofitConfig.createApi(SearchAPI::class.java)
     }
 
-    single<SearchRepository> {
+    single<com.livmas.search.domain.repositories.SearchRepository> {
         SearchRepositoryImpl(get())
     }
     single {
