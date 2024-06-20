@@ -17,10 +17,14 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            buildConfigField("String", "API_URL", "\"https://run.mocky.io/v3/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            buildConfigField("String", "API_URL", "\"https://run.mocky.io/v3/\"")
         }
     }
     compileOptions {
@@ -30,15 +34,27 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
     implementation(project(":feature:search"))
+
     val dataStoreVersion = "1.1.1"
     implementation("androidx.datastore:datastore-preferences:$dataStoreVersion")
 
+//     Koin for Android
     val koinVersion = "3.5.6"
     implementation("io.insert-koin:koin-android:$koinVersion")
+
+//    HTTP
+    val retrofitVersion = "2.11.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
