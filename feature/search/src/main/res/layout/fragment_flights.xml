@@ -97,7 +97,7 @@
             android:divider="@drawable/carousel_divider">
             <Button
                 android:id="@+id/btnBackTicket"
-                android:text="обратно"
+                android:text="@string/return_label"
                 android:drawableLeft="@drawable/ic_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                 style="@style/CarouselButtonStyle"/>
             <Button
                 android:id="@+id/btnFilter"
-                android:text="фильтры"
+                android:text="@string/filters_label"
                 android:drawableLeft="@drawable/ic_filter"
                 android:layout_marginStart="20dp"
                 android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
         android:orientation="vertical"
         android:background="@drawable/rounded_primary_shape">
         <TextView
-            android:text="Прямые рейсы"
+            android:text="@string/direct_flights_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
@@ -143,7 +143,7 @@
             android:layout_marginTop="15dp"/>
         <TextView
             android:id="@+id/showAllFlights"
-            android:text="Показать все"
+            android:text="@string/watch_all_label"
             android:textSize="16sp"
             android:textColor="@color/dark_blue"
             android:textStyle="bold"
@@ -156,7 +156,7 @@
     <Button
         android:id="@+id/btnTickets"
         style="@style/DarkBlueButtonStyle"
-        android:text="Посмотреть все билеты"
+        android:text="@string/watch_all_tickets_label"
         android:textAllCaps="false"
         android:textStyle="italic"
         android:textColor="@color/white"
@@ -180,7 +180,7 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_ring"/>
         <TextView
-            android:text="Подписка на цену"
+            android:text="@string/subscribe_on_price_label"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_width="0dp"

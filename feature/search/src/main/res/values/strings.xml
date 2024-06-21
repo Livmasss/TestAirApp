@@ -12,4 +12,17 @@
     <string name="has_transfers">С пересадками</string>
     <string name="passengers_count">%1$d пассажиров</string>
     <string name="cities_text">%1$s—%2$s</string>
+    <string name="return_label">обратно</string>
+    <string name="filters_label">фильтры</string>
+    <string name="direct_flights_label">Прямые рейсы</string>
+    <string name="watch_all_label">Показать все</string>
+    <string name="watch_all_tickets_label">Посмотреть все билеты</string>
+    <string name="subscribe_on_price_label">Подписка на цену</string>
+    <string name="app_slogon">Поиск дешёвых\nавиабилетов</string>
+    <string name="from_city_hint">Откуда - Москва</string>
+    <string name="to_city_hint">Куда - Турция</string>
+    <string name="musically_flight_label">Музыкально отлететь</string>
+    <string name="show_all_places_label">Показать все места</string>
+    <string name="your_first_time_label">Ваш первый раз</string>
+    <string name="no_transers">Без пересадок</string>
 </resources>

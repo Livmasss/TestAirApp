@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Откуда - Москва"
+                android:hint="@string/from_city_hint"
                 android:layout_marginHorizontal="5dp"
                 android:background="@color/transparent"/>
         </LinearLayout>
@@ -71,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Куда - Турция"
+                android:hint="@string/to_city_hint"
                 android:background="@color/transparent"/>
 
             <ImageButton

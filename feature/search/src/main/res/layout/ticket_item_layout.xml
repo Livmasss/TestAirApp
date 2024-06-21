@@ -112,7 +112,7 @@
                 android:id="@+id/tvTransfer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Без пересадок"
+                android:text="@string/no_transers"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
