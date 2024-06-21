@@ -39,28 +39,27 @@
                 android:orientation="vertical">
 
                 <EditText
+                    style="@style/EditTextField"
                     android:id="@+id/etCityFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:digits="йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"
-                    android:inputType="text"
                     android:hint="Откуда - Москва"
-                    android:background="@color/transparent" />
+                    android:layout_marginVertical="1dp"
+                    android:background="@color/transparent"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/light_grey"/>
+                    android:background="@color/grey_5"/>
 
                 <EditText
+                    style="@style/EditTextField"
                     android:id="@+id/etCityTo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:ems="10"
-                    android:digits="йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"
-                    android:inputType="text"
                     android:hint="Куда - Турция"
                     android:background="@color/transparent"/>
 
@@ -87,12 +86,13 @@
         android:textStyle="italic"
         android:textAllCaps="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorPrimary"/>
 
     <TextView
         android:layout_marginTop="30dp"
         android:text="Ваш первый раз"
-        android:textColor="@color/grey"
+        android:textColor="@color/grey_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

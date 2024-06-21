@@ -32,16 +32,13 @@
                 android:layout_marginVertical="5dp">
 
                 <EditText
+                    style="@style/EditTextField"
                     android:id="@+id/etCityFrom"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/light_grey"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:enabled="false"
-                    android:digits="йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"
-                    android:inputType="text"
                     android:hint="Откуда - Москва"
                     android:background="@color/transparent" />
 
@@ -57,7 +54,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/light_grey"/>
+                android:background="@color/grey_4"/>
 
             <LinearLayout
                 android:gravity="center"
@@ -67,16 +64,13 @@
                 android:layout_marginVertical="5dp">
 
                 <EditText
+                    style="@style/EditTextField"
                     android:id="@+id/etCityTo"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/light_grey"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:enabled="false"
-                    android:digits="йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"
-                    android:inputType="text"
                     android:hint="Куда - Турция"
                     android:background="@color/transparent"/>
 

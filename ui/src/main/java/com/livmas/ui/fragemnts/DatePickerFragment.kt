@@ -20,26 +20,23 @@ class DatePickerFragment(
         val month = c[Calendar.MONTH]
         val day = c[Calendar.DAY_OF_MONTH]
 
+
         // Create a new instance of DatePickerDialog and return it.
-        val dialog = DatePickerDialog(requireContext(), R.style.DatePickerTheme, this, year, month, day)
+        return DatePickerDialog(requireContext(), R.style.DatePickerTheme, this, year, month, day).apply {
+            if (showNegativeButton) {
+                setButton(
+                    Dialog.BUTTON_NEGATIVE,
+                    "Сбросить"
+                ) { _, _ ->
+                    listener(null)
+                }
 
-        if (showNegativeButton) {
-            dialog.setButton(
-                Dialog.BUTTON_NEGATIVE,
-                "Сбросить"
-            ) { _, _ ->
-                listener(null)
-            }
-
-            dialog.setButton(
-                Dialog.BUTTON_NEUTRAL,
-                "Отмена"
-            ) { _, _ ->
-
+                setButton(
+                    Dialog.BUTTON_NEUTRAL,
+                    "Отмена"
+                ) { _, _ -> }
             }
         }
-
-        return dialog
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {

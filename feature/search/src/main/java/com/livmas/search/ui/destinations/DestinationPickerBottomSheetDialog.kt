@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -29,6 +30,13 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     companion object {
         var isOpened = false
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setStyle(DialogFragment.STYLE_NO_TITLE, com.livmas.ui.R.style.Theme_TestAirApp)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DestinationPickerBottomsheetFragmentBinding.inflate(inflater, container, false)
         return binding.root

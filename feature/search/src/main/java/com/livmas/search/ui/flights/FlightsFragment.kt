@@ -40,7 +40,7 @@ internal class FlightsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dateTimeStringifier.secondColor = ContextCompat.getColor(requireContext(), com.livmas.ui.R.color.light_grey)
+        dateTimeStringifier.secondColor = ContextCompat.getColor(requireContext(), com.livmas.ui.R.color.grey_6)
 
         setupViews()
         setupObservers()

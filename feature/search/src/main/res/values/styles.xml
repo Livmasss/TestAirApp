@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="EditTextField" parent="@style/Theme.TestAirApp.MyTextViewStyle">
+        <item name="android:digits">"йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ"</item>
+        <item name="android:inputType">text</item>
+        <item name="hintTextColor">@color/grey_6</item>
+        <item name="background">@color/transparent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+</resources>
