@@ -92,9 +92,10 @@ internal class FlightsFragment : Fragment() {
             }
         }
         sharedViewModel.returnFlightDate.observe(viewLifecycleOwner) {
-            it?.let {
-                binding.btnBackTicket.text = dateTimeStringifier.stringifyDateWithDayOfWeek(it)
-            }
+            binding.btnBackTicket.text = if (it == null)
+                "обратно"
+            else
+                dateTimeStringifier.stringifyDateWithDayOfWeek(it)
         }
     }
 
@@ -128,7 +129,7 @@ internal class FlightsFragment : Fragment() {
 
     private fun setupReturnFlightDateButton() {
         binding.btnBackTicket.setOnClickListener {
-            val fragment = DatePickerFragment {
+            val fragment = DatePickerFragment(true) {
                 sharedViewModel.returnFlightDate.postValue(it)
             }
             fragment.show(parentFragmentManager, "datePicker")
@@ -137,7 +138,7 @@ internal class FlightsFragment : Fragment() {
 
     private fun setupFlightDateButton() {
         binding.btnFlightDate.setOnClickListener {
-            val fragment = DatePickerFragment {
+            val fragment = DatePickerFragment(false) {
                 sharedViewModel.flightDate.postValue(it)
             }
             fragment.show(parentFragmentManager, "datePicker")

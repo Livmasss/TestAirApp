@@ -8,7 +8,10 @@ import androidx.fragment.app.DialogFragment
 import com.livmas.ui.R
 import java.util.Calendar
 
-class DatePickerFragment(private val listener: (Calendar) -> Unit) : DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DatePickerFragment(
+    private val showNegativeButton: Boolean = true,
+    private val listener: (Calendar?) -> Unit
+) : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current date as the default date in the picker.
@@ -18,7 +21,25 @@ class DatePickerFragment(private val listener: (Calendar) -> Unit) : DialogFragm
         val day = c[Calendar.DAY_OF_MONTH]
 
         // Create a new instance of DatePickerDialog and return it.
-        return DatePickerDialog(requireContext(), R.style.DatePickerTheme, this, year, month, day)
+        val dialog = DatePickerDialog(requireContext(), R.style.DatePickerTheme, this, year, month, day)
+
+        if (showNegativeButton) {
+            dialog.setButton(
+                Dialog.BUTTON_NEGATIVE,
+                "Сбросить"
+            ) { _, _ ->
+                listener(null)
+            }
+
+            dialog.setButton(
+                Dialog.BUTTON_NEUTRAL,
+                "Отмена"
+            ) { _, _ ->
+
+            }
+        }
+
+        return dialog
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
