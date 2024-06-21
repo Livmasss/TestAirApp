@@ -13,12 +13,12 @@ import com.livmas.utils.DateTimeStringifier
 
 internal class FlightsAdapter(
     private val context: Context,
-    private val data: List<FlightModel>,
+    private var data: List<FlightModel>,
     private val dateTimeStringifier: DateTimeStringifier
 ): RecyclerView.Adapter<FlightsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: FlightItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FlightModel) {
-            binding.ivImage.setImageDrawable(item.defineFlightImage())
+        fun bind(item: FlightModel, index: Int) {
+            binding.ivImage.setImageDrawable(defineFlightImage(index))
             binding.tvAirCompany.text = item.company
             binding.tvPrice.text = context.resources.getString(R.string.pattern_open_ticket, item.price.toString())
             binding.tvFlightTimes.text = item.times.joinToString(" ") {
@@ -37,15 +37,20 @@ internal class FlightsAdapter(
         data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], position)
     }
 
-    private fun FlightModel.defineFlightImage(): Drawable =
+    private fun defineFlightImage(index: Int): Drawable =
         Color.parseColor(
-            when (flightId) {
-                0 -> "#FF5E5E"
-                1 -> "#2261BC"
+            when (index) {
+                1 -> "#FF5E5E"
+                2 -> "#2261BC"
                 else -> "#FFFFFF"
             }
         ).toDrawable()
+
+    fun updateData(newData: List<FlightModel>) {
+        data = newData
+        notifyDataSetChanged()
+    }
 }

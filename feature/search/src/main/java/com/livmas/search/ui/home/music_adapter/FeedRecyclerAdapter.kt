@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.MusicRecyclerItemBinding
 
-internal class MusicRecyclerAdapter(
-    private val data: List<MusicItemModel>
-): RecyclerView.Adapter<MusicRecyclerAdapter.ViewHolder>() {
+internal class FeedRecyclerAdapter(
+    private var data: List<FeedItemModel>
+): RecyclerView.Adapter<FeedRecyclerAdapter.ViewHolder>() {
     internal class ViewHolder(private val itemViewBinding: MusicRecyclerItemBinding) :
         RecyclerView.ViewHolder(itemViewBinding.root) {
-            fun bind(item: MusicItemModel) {
+            fun bind(item: FeedItemModel) {
                 itemViewBinding.apply {
                     sivTripCover.setImageResourceById(item.id)
                     tvTitle.text = item.title
@@ -22,12 +22,12 @@ internal class MusicRecyclerAdapter(
                 }
             }
 
-        private fun ImageView.setImageResourceById(id: Int) {
+        private fun ImageView.setImageResourceById(id: Long) {
             setImageResource(
                 when(id) {
-                    0 -> R.drawable.image_dora
-                    1 -> R.drawable.image_socrat_i_lera
-                    2 -> R.drawable.image_lampabikt
+                    1L -> R.drawable.image_dora
+                    2L -> R.drawable.image_socrat_i_lera
+                    3L -> R.drawable.image_lampabikt
                     else -> R.drawable.image_dora
                 }
             )
@@ -47,5 +47,10 @@ internal class MusicRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
+    }
+
+    fun updateDate(newData: List<FeedItemModel>) {
+        data = newData
+        notifyDataSetChanged()
     }
 }

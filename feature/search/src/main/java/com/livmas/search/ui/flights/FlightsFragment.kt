@@ -18,11 +18,15 @@ import com.livmas.ui.fragemnts.DatePickerFragment
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import com.livmas.utils.DateTimeStringifier
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
 internal class FlightsFragment : Fragment() {
+    private val viewModel: FlightsViewModel by viewModel()
     private val sharedViewModel: SearchViewModel by activityViewModel()
+
     private lateinit var binding: FragmentFlightsBinding
+    private var rvAdapter: FlightsAdapter? = null
     private val dateTimeStringifier = DateTimeStringifier()
 
     override fun onCreateView(
@@ -37,9 +41,10 @@ internal class FlightsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         dateTimeStringifier.secondColor = ContextCompat.getColor(requireContext(), com.livmas.ui.R.color.light_grey)
-        sharedViewModel.passengersCount.postValue(1)
+
         setupViews()
         setupObservers()
+        initiateData()
     }
 
     private fun setupViews() {
@@ -54,6 +59,21 @@ internal class FlightsFragment : Fragment() {
     private fun setupObservers() {
         setupCitiesObservers()
         setupDatesObservers()
+        setupFlightsObserver()
+    }
+
+    private fun initiateData() {
+        viewModel.refreshFlights()
+        sharedViewModel.passengersCount.postValue(1)
+    }
+
+    private fun setupFlightsObserver() {
+        viewModel.flights.observe(viewLifecycleOwner) {
+            if (it == null)
+                return@observe
+
+            rvAdapter?.updateData(it)
+        }
     }
 
     private fun setupCitiesObservers() {
@@ -79,7 +99,7 @@ internal class FlightsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val flightsAdapter = FlightsAdapter(
+        rvAdapter = FlightsAdapter(
             requireContext(),
             listOf(
                 FlightModel(0, "First", 1234, listOf(Calendar.getInstance(), Calendar.getInstance())),
@@ -93,7 +113,7 @@ internal class FlightsFragment : Fragment() {
         val marginDecoration = VerticalMarginItemDecoration(20f)
 
         binding.rvFlights.apply {
-            adapter = flightsAdapter
+            adapter = rvAdapter
             layoutManager = manager
             addItemDecoration(dividerDecoration)
             addItemDecoration(marginDecoration)

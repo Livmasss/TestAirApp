@@ -7,6 +7,7 @@ import com.livmas.search.domain.dtos.TicketDTO
 import com.livmas.search.models.GetFeedResponseBody
 import com.livmas.search.models.GetFlightsResponseBody
 import com.livmas.search.models.GetTicketsResponseBody
+import com.livmas.utils.CalendarUtil
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -59,22 +60,17 @@ object SearchMapper {
                 time = it.arrival.date
                 this
             }
-            val timeInTripCalendar = Calendar.getInstance().run {
-                timeInMillis = arrivalDate.timeInMillis - departureDate.timeInMillis
-                this
-            }
-            val timeInTripInterval = timeInTripCalendar.run {
-                get(Calendar.HOUR_OF_DAY) + get(Calendar.MINUTE) / 60f
-            }
 
+            val timeInTrip = CalendarUtil.hourDifference(arrivalDate, departureDate)
+            val timeInTripRounded = CalendarUtil.roundOffDecimal(timeInTrip)
             TicketDTO(
                 id = it.id,
                 price = it.price.value,
                 startTime = departureDate,
                 endTime = arrivalDate,
-                startCity = it.departure.town,
-                endCity = it.arrival.town,
-                timeInTrip = timeInTripInterval,
+                startCity = it.departure.airport,
+                endCity = it.arrival.airport,
+                timeInTrip = timeInTripRounded,
                 hasTransfer = it.hasTransfer,
                 badge = it.badge
             )

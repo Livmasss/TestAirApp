@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.R
@@ -16,12 +15,14 @@ import com.livmas.search.ui.tickets.adapter.TicketModel
 import com.livmas.search.ui.tickets.adapter.TicketsRecyclerAdapter
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import com.livmas.utils.DateTimeStringifier
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
 class TicketsFragment : Fragment() {
-    private val viewModel: TicketsViewModel by viewModels()
+    private val viewModel: TicketsViewModel by viewModel()
     private val sharedViewModel: SearchViewModel by activityViewModels()
     private lateinit var binding: FragmentTicketsBinding
+    private var rvAdapter: TicketsRecyclerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,14 +34,10 @@ class TicketsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViews()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
+        setupObservers()
         refreshValues()
-        refreshDetails()
     }
 
     private fun setupViews() {
@@ -48,9 +45,23 @@ class TicketsFragment : Fragment() {
         setupBackButton()
     }
 
+    private fun setupObservers() {
+        setupTicketsObserver()
+    }
+
     private fun refreshValues() {
         refreshCities()
         refreshDetails()
+        viewModel.refreshTickets()
+    }
+
+    private fun setupTicketsObserver() {
+        viewModel.tickets.observe(viewLifecycleOwner) {
+            if (it == null)
+                return@observe
+
+            rvAdapter?.updateData(it)
+        }
     }
 
     private fun setupBackButton() {
@@ -59,7 +70,7 @@ class TicketsFragment : Fragment() {
         }
     }
     private fun setupRecyclerView() {
-        val ticketsAdapter = TicketsRecyclerAdapter(requireContext(),
+        rvAdapter = TicketsRecyclerAdapter(requireContext(),
             listOf(
             TicketModel(5000,
                 Calendar.getInstance(), Calendar.getInstance(),
@@ -86,7 +97,7 @@ class TicketsFragment : Fragment() {
         val marginDecoration = VerticalMarginItemDecoration(20f)
 
         binding.rvTickets.apply {
-            adapter = ticketsAdapter
+            adapter = rvAdapter
             layoutManager = manager
             addItemDecoration(marginDecoration)
         }

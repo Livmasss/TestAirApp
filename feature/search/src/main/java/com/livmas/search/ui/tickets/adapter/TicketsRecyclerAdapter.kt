@@ -11,7 +11,7 @@ import com.livmas.utils.DateTimeStringifier
 
 internal class TicketsRecyclerAdapter(
     private val context: Context,
-    private val data: List<TicketModel>
+    private var data: List<TicketModel>
 ): RecyclerView.Adapter<TicketsRecyclerAdapter.ViewHolder>() {
     private val stringifier = DateTimeStringifier()
     inner class ViewHolder(private val binding: TicketItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
@@ -53,5 +53,10 @@ internal class TicketsRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
+    }
+
+    fun updateData(newData: List<TicketModel>) {
+        data = newData
+        notifyDataSetChanged()
     }
 }

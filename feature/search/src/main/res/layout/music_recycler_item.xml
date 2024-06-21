@@ -19,13 +19,19 @@
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Название"/>
+        android:text="Название"
+
+        android:ellipsize="end"
+        android:maxLines="1"/>
     <TextView
         android:id="@+id/tvDestination"
         android:textSize="14sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Город"/>
+        android:text="Город"
+
+        android:ellipsize="end"
+        android:maxLines="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"

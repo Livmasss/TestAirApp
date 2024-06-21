@@ -34,6 +34,7 @@ data class GetTicketsResponseBody(
     ) {
         data class DestinationModel(
             val town: String,
+            val airport: String,
             val date: Date
         )
 

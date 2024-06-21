@@ -12,7 +12,7 @@ data class TicketDTO(
     val startCity: String,
     val endCity: String,
 
-    val timeInTrip: Float,
+    val timeInTrip: Double,
     val hasTransfer: Boolean,
 
     val badge: String? = null

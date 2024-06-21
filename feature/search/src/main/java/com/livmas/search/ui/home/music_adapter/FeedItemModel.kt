@@ -1,7 +1,7 @@
 package com.livmas.search.ui.home.music_adapter
 
-data class MusicItemModel(
-    val id: Int,
+internal data class FeedItemModel(
+    val id: Long,
     val title: String,
     val destination: String,
     val price: Int,

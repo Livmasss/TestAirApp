@@ -9,21 +9,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.databinding.FragmentHomeBinding
 import com.livmas.search.ui.SearchViewModel
 import com.livmas.search.ui.destinations.DestinationPickerBottomSheetDialog
-import com.livmas.search.ui.home.music_adapter.MusicItemModel
-import com.livmas.search.ui.home.music_adapter.MusicRecyclerAdapter
+import com.livmas.search.ui.home.music_adapter.FeedRecyclerAdapter
 import com.livmas.ui.MyTextWatcher
 import com.livmas.ui.recycler_decorations.HorizontalMarginItemDecoration
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
-    private val viewModel: SearchViewModel by activityViewModel()
+    private val viewModel: HomeViewModel by viewModel()
+    private val sharedViewModel: SearchViewModel by activityViewModel()
     private lateinit var binding: FragmentHomeBinding
+    private var rvAdapter: FeedRecyclerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        if (viewModel.destination.value != null)
+        if (sharedViewModel.destination.value != null)
             showDialog()
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -35,11 +37,12 @@ class HomeFragment : Fragment() {
 
         setupViews()
         setupObservers()
+        initiateData()
     }
 
     override fun onStop() {
         super.onStop()
-        viewModel.saveStartCity()
+        sharedViewModel.saveStartCity()
     }
 
     private fun setupViews() {
@@ -48,12 +51,14 @@ class HomeFragment : Fragment() {
         setupDestinationEditTextView()
     }
 
+    private fun initiateData() {
+        viewModel.refreshFeed()
+    }
+
     private fun setupRecyclerView() {
-        val rvAdapter = MusicRecyclerAdapter(listOf(
-            MusicItemModel(0, "Дора", "Питер", 5000),
-            MusicItemModel(1, "Типы эти", "Москва", 4550),
-            MusicItemModel(2, "Лампа бикта", "Ростов на Дону ставит раком всю страну", 7000)
-        ))
+        rvAdapter = FeedRecyclerAdapter(
+            listOf()
+        )
         val manager = LinearLayoutManager(requireContext())
         manager.orientation = LinearLayoutManager.HORIZONTAL
 
@@ -65,11 +70,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupStartCityEditTextView() {
-        viewModel.readStartCity()
+        sharedViewModel.readStartCity()
 
         binding.etCityFrom.addTextChangedListener(
             MyTextWatcher{
-                viewModel.postStartCity(it)
+                sharedViewModel.postStartCity(it)
             }
         )
     }
@@ -85,19 +90,29 @@ class HomeFragment : Fragment() {
     private fun setupObservers() {
         setupStartCityObserver()
         setupDestinationObserver()
+        setupFeedObserver()
+    }
+
+    private fun setupFeedObserver() {
+        viewModel.feed.observe(viewLifecycleOwner) {
+            if (it == null)
+                return@observe
+
+            rvAdapter?.updateDate(it)
+        }
     }
 
     private fun setupStartCityObserver() {
-        viewModel.initialStartCity.observe(viewLifecycleOwner) {
+        sharedViewModel.initialStartCity.observe(viewLifecycleOwner) {
             if (it != null) {
-                viewModel.initialStartCity.removeObservers(viewLifecycleOwner)
+                sharedViewModel.initialStartCity.removeObservers(viewLifecycleOwner)
                 binding.etCityFrom.setText(it)
             }
         }
     }
 
     private fun setupDestinationObserver() {
-        viewModel.destination.observe(viewLifecycleOwner) {
+        sharedViewModel.destination.observe(viewLifecycleOwner) {
             binding.etCityTo.setText(it)
         }
     }
