@@ -11,9 +11,7 @@ object CalendarUtil {
         val secondMillis = c2.timeInMillis
 
         val resultMillis = firstMillis - secondMillis
-        val result = resultMillis.toDuration(DurationUnit.MILLISECONDS).toDouble(DurationUnit.HOURS)
-
-        return result
+        return resultMillis.toDuration(DurationUnit.MILLISECONDS).toDouble(DurationUnit.HOURS)
 
     }
     fun roundOffDecimal(number: Double): Double {

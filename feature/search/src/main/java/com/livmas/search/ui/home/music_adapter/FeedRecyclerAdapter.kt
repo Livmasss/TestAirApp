@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.MusicRecyclerItemBinding
+import com.livmas.utils.MyDecimalFormatter
 
 internal class FeedRecyclerAdapter(
     private var data: List<FeedItemModel>
@@ -33,7 +34,7 @@ internal class FeedRecyclerAdapter(
             )
         }
         private fun Context.getPriceString(price: Int) =
-            getString(com.livmas.ui.R.string.pattern_from_price, price.toString())
+            getString(com.livmas.ui.R.string.pattern_from_price, MyDecimalFormatter.formatPrice(price))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

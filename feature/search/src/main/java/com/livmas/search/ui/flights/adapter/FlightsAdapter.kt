@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.FlightItemLayoutBinding
 import com.livmas.utils.DateTimeStringifier
+import com.livmas.utils.MyDecimalFormatter
 
 internal class FlightsAdapter(
     private val context: Context,
@@ -20,7 +21,7 @@ internal class FlightsAdapter(
         fun bind(item: FlightModel, index: Int) {
             binding.ivImage.setImageDrawable(defineFlightImage(index))
             binding.tvAirCompany.text = item.company
-            binding.tvPrice.text = context.resources.getString(R.string.pattern_open_ticket, item.price.toString())
+            binding.tvPrice.text = context.resources.getString(R.string.pattern_open_ticket, MyDecimalFormatter.formatPrice(item.price))
             binding.tvFlightTimes.text = item.times.joinToString(" ") {
                 dateTimeStringifier.stringifyTime(it)
             }

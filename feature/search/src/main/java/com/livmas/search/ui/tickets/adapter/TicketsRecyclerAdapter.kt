@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.TicketItemLayoutBinding
 import com.livmas.utils.DateTimeStringifier
+import com.livmas.utils.MyDecimalFormatter
 
 internal class TicketsRecyclerAdapter(
     private val context: Context,
@@ -18,7 +19,8 @@ internal class TicketsRecyclerAdapter(
         fun bind(item: TicketModel) {
             binding.apply {
                 tvPrice.text = context.resources.getString(
-                    com.livmas.ui.R.string.pattern_price, item.price.toString()
+                    com.livmas.ui.R.string.pattern_price,
+                    MyDecimalFormatter.formatPrice(item.price)
                 )
 
                 tvEndPoint.text = item.endCity
