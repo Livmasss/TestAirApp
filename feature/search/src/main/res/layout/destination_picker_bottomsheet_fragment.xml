@@ -7,11 +7,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/bottom_sheet_background"
 
-    style="@style/Theme.TestAirApp.BottomSheet"
-    android:padding="20dp">
+    style="@style/Theme.TestAirApp.BottomSheet">
 
     <View
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         android:layout_height="5dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/rounded_primary_variant_shape"/>
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/rounded_primary_shape"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/activity_vertical_margin">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

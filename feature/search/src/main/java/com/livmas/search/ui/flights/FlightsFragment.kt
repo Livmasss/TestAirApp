@@ -12,14 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.FragmentFlightsBinding
 import com.livmas.search.ui.SearchViewModel
-import com.livmas.search.ui.flights.adapter.FlightModel
 import com.livmas.search.ui.flights.adapter.FlightsAdapter
 import com.livmas.ui.fragemnts.DatePickerFragment
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import com.livmas.utils.DateTimeStringifier
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Calendar
 
 internal class FlightsFragment : Fragment() {
     private val viewModel: FlightsViewModel by viewModel()
@@ -79,7 +77,10 @@ internal class FlightsFragment : Fragment() {
             if (it == null)
                 return@observe
 
-            rvAdapter?.updateData(it)
+            rvAdapter?.apply {
+                updateData(it)
+                binding.pbDateLoading.visibility = View.GONE
+            }
         }
     }
 
@@ -109,13 +110,9 @@ internal class FlightsFragment : Fragment() {
     private fun setupRecyclerView() {
         rvAdapter = FlightsAdapter(
             requireContext(),
-            listOf(
-                FlightModel(0, "First", 1234, listOf(Calendar.getInstance(), Calendar.getInstance())),
-                FlightModel(1, "Вторая", 10234, listOf(Calendar.getInstance())),
-                FlightModel(2, "Компания", 5000, listOf()),
-                ),
+            listOf(),
             dateTimeStringifier
-            )
+        )
         val manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val dividerDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         val marginDecoration = VerticalMarginItemDecoration(20f)

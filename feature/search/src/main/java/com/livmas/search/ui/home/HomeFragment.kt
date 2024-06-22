@@ -98,7 +98,10 @@ class HomeFragment : Fragment() {
             if (it == null)
                 return@observe
 
-            rvAdapter?.updateDate(it)
+            rvAdapter?.apply {
+                updateDate(it)
+                binding.pbDateLoading.visibility = View.GONE
+            }
         }
     }
 

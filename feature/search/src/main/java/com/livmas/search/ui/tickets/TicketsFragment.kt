@@ -11,12 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.FragmentTicketsBinding
 import com.livmas.search.ui.SearchViewModel
-import com.livmas.search.ui.tickets.adapter.TicketModel
 import com.livmas.search.ui.tickets.adapter.TicketsRecyclerAdapter
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import com.livmas.utils.DateTimeStringifier
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Calendar
 
 class TicketsFragment : Fragment() {
     private val viewModel: TicketsViewModel by viewModel()
@@ -60,7 +58,10 @@ class TicketsFragment : Fragment() {
             if (it == null)
                 return@observe
 
-            rvAdapter?.updateData(it)
+            rvAdapter?.apply {
+                updateData(it)
+                binding.pbDateLoading.visibility = View.GONE
+            }
         }
     }
 
@@ -71,28 +72,8 @@ class TicketsFragment : Fragment() {
     }
     private fun setupRecyclerView() {
         rvAdapter = TicketsRecyclerAdapter(requireContext(),
-            listOf(
-            TicketModel(5000,
-                Calendar.getInstance(), Calendar.getInstance(),
-                "AER", "PRD",
-                3.5f,
-                false,
-                "Самый удобный"
-            ),
-            TicketModel(5000,
-                Calendar.getInstance(), Calendar.getInstance(),
-                "AER", "PRD",
-                3.5f,
-                false,
-                "Самый быстрый"
-            ),
-            TicketModel(5000,
-                Calendar.getInstance(), Calendar.getInstance(),
-                "AER", "PRD",
-                3.5f,
-                false
-            )
-        ))
+            listOf()
+        )
         val manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val marginDecoration = VerticalMarginItemDecoration(20f)
 
