@@ -100,13 +100,12 @@
                 android:id="@+id/btnComplexRoute"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/ic_hard_route"/>
+                android:background="@drawable/ic_hard_route"
+                android:contentDescription="@string/label_complex_route"/>
             <TextView
-                style="@style/Theme.TestAirApp.BottomSheet.MyTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_hard_route"
-                android:textColor="@color/white"
+                android:text="@string/label_complex_route"
                 android:textAlignment="center"/>
         </LinearLayout>
 
@@ -124,13 +123,12 @@
                 android:id="@+id/btnAnywhere"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/ic_anywhere"/>
+                android:background="@drawable/ic_anywhere"
+                android:contentDescription="@string/label_complex_route"/>
             <TextView
-                style="@style/Theme.TestAirApp.BottomSheet.MyTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_anywhere"
-                android:textColor="@color/white"
                 android:textAlignment="center"/>
         </LinearLayout>
 
@@ -148,13 +146,12 @@
                 android:id="@+id/btnWeekend"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/ic_weakend"/>
+                android:background="@drawable/ic_weekend"
+                android:contentDescription="@string/label_complex_route"/>
             <TextView
-                style="@style/Theme.TestAirApp.BottomSheet.MyTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_weekend"
-                android:textColor="@color/white"
                 android:textAlignment="center"/>
         </LinearLayout>
 
@@ -172,13 +169,12 @@
                 android:id="@+id/btnHotTickets"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/ic_hot_tickets"/>
+                android:background="@drawable/ic_hot_tickets"
+                android:contentDescription="@string/label_complex_route"/>
             <TextView
-                style="@style/Theme.TestAirApp.BottomSheet.MyTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_hot_tickets"
-                android:textColor="@color/white"
                 android:textAlignment="center"/>
         </LinearLayout>
     </LinearLayout>

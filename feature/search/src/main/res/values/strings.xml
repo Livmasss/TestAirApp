@@ -3,7 +3,7 @@
     <string name="label_hot_tickets">Горичие билеты</string>
     <string name="label_weekend">Выходные</string>
     <string name="label_anywhere">Куда угодно</string>
-    <string name="label_hard_route">Сложный маршрут</string>
+    <string name="label_complex_route">Сложный маршрут</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pattern_open_ticket">%1$s ₽></string>
     <string name="popular_dir_message">Популярное направление</string>

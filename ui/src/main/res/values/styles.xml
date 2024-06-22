@@ -30,7 +30,7 @@
 
     <style name="DatePickerTheme" parent="ThemeOverlay.AppCompat.Dialog">
         <item name="android:windowBackground">?attr/colorPrimary</item>
-        <item name="android:colorAccent">@color/dark_blue</item>
+        <item name="android:colorAccent">?attr/colorAccent</item>
         <item name="buttonBarButtonStyle">@style/AppTheme.Alert.Button</item>
     </style>
     <style name="AppTheme.Alert.Button" parent="Widget.MaterialComponents.Button.TextButton">
@@ -43,17 +43,17 @@
         <item name="android:textStyle">italic</item>
     </style>
 
-    <style name="DarkBlueButtonStyle"
+    <style name="AccentButtonStyle"
         parent="Widget.MaterialComponents.Button">
-        <item name="materialThemeOverlay">@style/DarkBlueButtonThemeOverlay</item>
+        <item name="materialThemeOverlay">@style/AccentButtonThemeOverlay</item>
     </style>
 
     <style name="SwitchButtonStyle"
         parent="Widget.AppCompat.CompoundButton.Switch">
-        <item name="materialThemeOverlay">@style/DarkBlueButtonThemeOverlay</item>
+        <item name="materialThemeOverlay">@style/AccentButtonThemeOverlay</item>
     </style>
 
-    <style name="DarkBlueButtonThemeOverlay">
-        <item name="colorPrimary">@color/dark_blue</item>
+    <style name="AccentButtonThemeOverlay">
+        <item name="colorPrimary">?attr/colorAccent</item>
     </style>
 </resources>
