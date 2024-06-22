@@ -15,10 +15,16 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
-    <style name="Theme.TestAirApp.BottomSheet" parent="Theme.TestAirApp">
+    <style name="Theme.TestAirApp.BottomSheet" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="colorPrimary">@color/grey_3</item>
+        <item name="colorPrimaryVariant">@color/grey_4</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorAccent">@color/blue_2</item>
+        <item name="background">@color/black</item>
+        <item name="android:statusBarColor">?attr/backgroundColor</item>
+        <!-- Customize your theme here. -->
         <item name="android:textViewStyle">@style/Theme.TestAirApp.BottomSheet.MyTextViewStyle</item>
-        <item name="android:paddingVertical">@dimen/activity_vertical_margin</item>
-        <item name="android:paddingHorizontal">@dimen/activity_horizontal_margin</item>
     </style>
 
 

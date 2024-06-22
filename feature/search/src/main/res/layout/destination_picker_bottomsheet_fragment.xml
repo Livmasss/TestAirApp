@@ -7,7 +7,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/bottom_sheet_background"
 
-    style="@style/Theme.TestAirApp.BottomSheet">
+    android:paddingVertical="@dimen/activity_vertical_margin"
+    android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
     <View
         android:layout_width="50dp"

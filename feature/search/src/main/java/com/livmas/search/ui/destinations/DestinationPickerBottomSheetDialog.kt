@@ -1,13 +1,10 @@
 package com.livmas.search.ui.destinations
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
@@ -24,7 +21,6 @@ import com.livmas.search.ui.destinations.adapter.DestinationModel
 import com.livmas.search.ui.destinations.adapter.DestinationsAdapter
 import com.livmas.ui.MyTextWatcher
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
-import com.livmas.utils.LogTags
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
@@ -38,25 +34,11 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setStyle(DialogFragment.STYLE_NO_TITLE, com.livmas.ui.R.style.Theme_TestAirApp)
+        setStyle(DialogFragment.STYLE_NO_TITLE, com.livmas.ui.R.style.Theme_TestAirApp_BottomSheet)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DestinationPickerBottomsheetFragmentBinding.inflate(inflater, container, false)
-
-        try {
-            val window = dialog!!.window
-            window!!.requestFeature(Window.FEATURE_NO_TITLE)
-            val windowParams = window!!.attributes
-            windowParams.dimAmount = 0.20f
-            windowParams.flags = windowParams.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
-            windowParams.windowAnimations = android.R.style.Animation_Dialog
-        }
-        catch (e: Exception) {
-            Log.d(LogTags.UI, e.message.orEmpty())
-        }
-
         return binding.root
     }
 
