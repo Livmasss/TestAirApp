@@ -6,5 +6,5 @@ internal class GetFlightsUseCase(
     private val repository: SearchRepository
 ) {
     suspend fun execute() =
-        repository.getFlights()
+        repository.getFlights().slice(0..2)
 }

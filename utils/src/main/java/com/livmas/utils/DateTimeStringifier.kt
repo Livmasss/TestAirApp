@@ -21,7 +21,7 @@ class DateTimeStringifier(var secondColor: Int = Color.LTGRAY) {
     }
 
     fun stringifyDateWithoutDayOfWeek(date: Calendar): String {
-        return DateFormat.format("dd MMMM", date).toString()
+        return DateFormat.format("d MMMM", date).toString()
     }
 
     fun stringifyTime(c: Calendar): String {
