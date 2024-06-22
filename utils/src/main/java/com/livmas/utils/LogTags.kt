@@ -1,5 +1,6 @@
 package com.livmas.utils
 
 object LogTags {
-    val IO_LOCAL = "Air.io.local"
+    const val UI = "Air.ui"
+    const val IO_LOCAL = "Air.io.local"
 }

@@ -2,9 +2,12 @@ package com.livmas.search.ui.destinations
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
@@ -21,7 +24,9 @@ import com.livmas.search.ui.destinations.adapter.DestinationModel
 import com.livmas.search.ui.destinations.adapter.DestinationsAdapter
 import com.livmas.ui.MyTextWatcher
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
+import com.livmas.utils.LogTags
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+
 
 class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     private lateinit var binding : DestinationPickerBottomsheetFragmentBinding
@@ -39,6 +44,19 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DestinationPickerBottomsheetFragmentBinding.inflate(inflater, container, false)
+
+        try {
+            val window = dialog!!.window
+            window!!.requestFeature(Window.FEATURE_NO_TITLE)
+            val windowParams = window!!.attributes
+            windowParams.dimAmount = 0.20f
+            windowParams.flags = windowParams.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
+            windowParams.windowAnimations = android.R.style.Animation_Dialog
+        }
+        catch (e: Exception) {
+            Log.d(LogTags.UI, e.message.orEmpty())
+        }
+
         return binding.root
     }
 
@@ -80,14 +98,14 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     private fun setupViews() {
-        setupTabs()
+        setupTabButtons()
         setupStartCityEditTextView()
         setupDestinationEditTextView()
         setupClearButton()
         setupAdapter()
     }
 
-    private fun setupTabs() {
+    private fun setupTabButtons() {
         val navController = findNavController()
 
         binding.apply{
@@ -98,6 +116,7 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                 val text = resources.getString(R.string.label_anywhere)
                 binding.etCityTo.setText(text)
                 viewModel.destination.postValue(text)
+                navController.navigateFromModal(R.id.action_fragment_home_to_fragment_flights)
             }
             btnWeekend.setOnClickListener {
                 navController.navigateFromModal(R.id.action_fragment_home_to_fragment_weekend)
@@ -122,11 +141,14 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                 MyTextWatcher{ viewModel.destination.postValue(it) }
             )
 
-            setOnClickListener {
-                Log.d("test", "Listener")
-                val searchModel = DestinationPickerBottomSheetDialog()
-
-                searchModel.show(parentFragmentManager, "search")
+            setOnKeyListener { _: View?, keyCode: Int, event: KeyEvent ->
+                // If the event is a key-down event on the "enter" button
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    findNavController().navigateFromModal(R.id.action_fragment_home_to_fragment_flights)
+                    true
+                }
+                else
+                    false
             }
         }
     }

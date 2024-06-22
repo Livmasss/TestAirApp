@@ -50,10 +50,17 @@ internal class FlightsFragment : Fragment() {
     private fun setupViews() {
         setupBackNavigateButton()
         setupSwapButton()
+        setupClearButton()
         setupTicketsButton()
         setupRecyclerView()
         setupFlightDateButton()
         setupReturnFlightDateButton()
+    }
+
+    private fun setupClearButton() {
+        binding.btnClearDestination.setOnClickListener {
+            sharedViewModel.destination.postValue("")
+        }
     }
 
     private fun setupObservers() {
