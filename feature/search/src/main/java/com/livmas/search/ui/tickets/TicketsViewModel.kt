@@ -21,10 +21,26 @@ internal class TicketsViewModel(
 
     fun refreshTickets() {
         CoroutineScope(Dispatchers.IO).launch {
-            val newTickets = getTicketsUseCase.execute().map {
+            val tickets = getTicketsUseCase.execute().map {
                 SearchMapper.ticketsDTOToUiModel(it)
-            }
-            _tickets.postValue(newTickets)
+            }.orderTickets()
+            _tickets.postValue(tickets)
         }
+    }
+
+    private fun List<TicketModel>.orderTickets(): List<TicketModel> =
+        sortedWith(
+            compareByDescending<TicketModel> {
+                nullableToInt(it.badge)
+            }.thenBy {
+                it.price
+            }
+        )
+
+    private fun nullableToInt(value: Any?): Int {
+        return if (value == null)
+            0
+        else
+            1
     }
 }
