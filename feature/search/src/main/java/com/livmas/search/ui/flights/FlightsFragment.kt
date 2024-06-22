@@ -18,6 +18,7 @@ import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import com.livmas.utils.DateTimeStringifier
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Calendar
 
 internal class FlightsFragment : Fragment() {
     private val viewModel: FlightsViewModel by viewModel()
@@ -131,19 +132,35 @@ internal class FlightsFragment : Fragment() {
         }
     }
 
-    private fun setupReturnFlightDateButton() {
-        binding.btnBackTicket.setOnClickListener {
-            val fragment = DatePickerFragment(true) {
-                sharedViewModel.returnFlightDate.postValue(it)
+    private fun setupFlightDateButton() {
+        binding.btnFlightDate.setOnClickListener {
+            val fragment = DatePickerFragment(
+                false,
+                startDate = sharedViewModel.flightDate.value ?: Calendar.getInstance(),
+                minAvailableDate = Calendar.getInstance()
+            ) {
+                sharedViewModel.flightDate.postValue(it)
+
+                it?.let { flightDate ->
+                    sharedViewModel.returnFlightDate.value?.timeInMillis?.let { returnFlightDate ->
+                        if (flightDate.timeInMillis > returnFlightDate)
+                            sharedViewModel.returnFlightDate.postValue(null)
+                    }
+                }
             }
+
             fragment.show(parentFragmentManager, "datePicker")
         }
     }
 
-    private fun setupFlightDateButton() {
-        binding.btnFlightDate.setOnClickListener {
-            val fragment = DatePickerFragment(false) {
-                sharedViewModel.flightDate.postValue(it)
+    private fun setupReturnFlightDateButton() {
+        binding.btnBackTicket.setOnClickListener {
+            val fragment = DatePickerFragment(
+                true,
+                startDate = sharedViewModel.returnFlightDate.value ?: Calendar.getInstance(),
+                sharedViewModel.flightDate.value
+            ) {
+                sharedViewModel.returnFlightDate.postValue(it)
             }
             fragment.show(parentFragmentManager, "datePicker")
         }

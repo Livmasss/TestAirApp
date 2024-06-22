@@ -10,15 +10,17 @@ import java.util.Calendar
 
 class DatePickerFragment(
     private val showNegativeButton: Boolean = true,
+    private val startDate: Calendar = Calendar.getInstance(),
+    private val minAvailableDate: Calendar? = null,
+    private val maxAvailableDate: Calendar? = null,
     private val listener: (Calendar?) -> Unit
 ) : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current date as the default date in the picker.
-        val c = Calendar.getInstance()
-        val year = c[Calendar.YEAR]
-        val month = c[Calendar.MONTH]
-        val day = c[Calendar.DAY_OF_MONTH]
+        val year = startDate[Calendar.YEAR]
+        val month = startDate[Calendar.MONTH]
+        val day = startDate[Calendar.DAY_OF_MONTH]
 
 
         // Create a new instance of DatePickerDialog and return it.
@@ -35,6 +37,14 @@ class DatePickerFragment(
                     Dialog.BUTTON_NEUTRAL,
                     "Отмена"
                 ) { _, _ -> }
+            }
+
+            maxAvailableDate?.let {
+                datePicker.maxDate = it.timeInMillis
+            }
+
+            minAvailableDate?.let {
+                datePicker.minDate = it.timeInMillis
             }
         }
     }

@@ -17,8 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.livmas.air_tikets.R
 import com.livmas.air_tikets.databinding.DestinationPickerBottomsheetFragmentBinding
 import com.livmas.search.ui.SearchViewModel
-import com.livmas.search.ui.destinations.adapter.DestinationModel
-import com.livmas.search.ui.destinations.adapter.DestinationsAdapter
+import com.livmas.search.ui.destinations.adapter.RecomendationModel
+import com.livmas.search.ui.destinations.adapter.RecomendationsAdapter
 import com.livmas.ui.MyTextWatcher
 import com.livmas.ui.recycler_decorations.VerticalMarginItemDecoration
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -142,10 +142,10 @@ class DestinationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     private fun setupAdapter() {
-        val myAdapter = DestinationsAdapter(listOf(
-            DestinationModel("Стамбул", resources.getString(R.string.popular_dir_message), R.drawable.istambul),
-            DestinationModel("Сочи", resources.getString(R.string.popular_dir_message), R.drawable.sochi),
-            DestinationModel("Пхукет", resources.getString(R.string.popular_dir_message), R.drawable.phuket),
+        val myAdapter = RecomendationsAdapter(listOf(
+            RecomendationModel("Стамбул", resources.getString(R.string.popular_dir_message), R.drawable.istambul),
+            RecomendationModel("Сочи", resources.getString(R.string.popular_dir_message), R.drawable.sochi),
+            RecomendationModel("Пхукет", resources.getString(R.string.popular_dir_message), R.drawable.phuket),
         )) {
             // OnClickListener
             val tvDestination = it.findViewById<TextView>(R.id.tvTitle)

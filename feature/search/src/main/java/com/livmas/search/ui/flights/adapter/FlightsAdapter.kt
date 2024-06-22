@@ -44,8 +44,8 @@ internal class FlightsAdapter(
     private fun defineFlightImage(index: Int): Drawable =
         Color.parseColor(
             when (index) {
-                1 -> "#FF5E5E"
-                2 -> "#2261BC"
+                0 -> "#FF5E5E"
+                1 -> "#2261BC"
                 else -> "#FFFFFF"
             }
         ).toDrawable()
