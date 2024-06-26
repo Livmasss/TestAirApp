@@ -168,8 +168,6 @@ dfeature/search/src/main/java/com/livmas/search/ui/destinations/DestinationPicke
 Tfeature/search/src/main/java/com/livmas/search/ui/destinations/HotTicketsFragment.kt,a\6\a6dc37eadf1e0546540508d454e79f435cb58f6d
 Å
 Qfeature/search/src/main/java/com/livmas/search/ui/destinations/WeekendFragment.kt,f\b\fbf13aaf5a8c2db4c8de376e84def985094f8109
-ç
-]feature/search/src/main/java/com/livmas/search/ui/destinations/adapter/DestinationsAdapter.kt,a\2\a2e6f6ebe98b3f5b752928cdbac0f44be61f72da
 |
 Lfeature/search/src/main/java/com/livmas/search/ui/flights/FlightsFragment.kt,a\5\a55a3bcfbe31a588946ca1765e0dce851d631e00
 É
@@ -216,7 +214,7 @@ j
 :utils/src/main/java/com/livmas/utils/MyDecimalFormatter.kt,d\a\dac1bf6c1f4272649628894784e303cc3c1bdce2
 n
 >utils/src/test/java/com/livmas/utils/MyDecimalFormatterTest.kt,9\c\9cd7c53b8189915e772ce23abda3abda569ae2e7
-è
-_feature/search/src/main/java/com/livmas/search/ui/destinations/adapter/RecomendationsAdapter.kt,0\1\01c94f348ca3afa973a08d4a5ac99b2b0c4e6da6
-å
-\feature/search/src/main/java/com/livmas/search/ui/destinations/adapter/RecomendationModel.kt,3\d\3ddecaa05f533f66043872508a38f4d37bb202ba
+ê
+`feature/search/src/main/java/com/livmas/search/ui/destinations/adapter/RecommendationsAdapter.kt,c\6\c6b605333c5ed985d2fd349376e4f7db2ad06b13
+ç
+]feature/search/src/main/java/com/livmas/search/ui/destinations/adapter/RecommendationModel.kt,1\f\1f1b774c066048cd9752531f4f1d26d13d493679

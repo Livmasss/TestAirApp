@@ -1,6 +1,6 @@
 package com.livmas.search.ui.destinations.adapter
 
-internal data class RecomendationModel (
+internal data class RecommendationModel (
     val title: String,
     val subTitle: String,
     val imageId: Int

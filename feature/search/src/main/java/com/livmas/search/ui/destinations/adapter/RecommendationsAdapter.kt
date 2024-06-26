@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.livmas.air_tikets.databinding.DestinationItemLayoutBinding
 
-internal class RecomendationsAdapter(
-    private val data: List<RecomendationModel>,
+internal class RecommendationsAdapter(
+    private val data: List<RecommendationModel>,
     private val onItemSelectedListener: OnClickListener
-): RecyclerView.Adapter<RecomendationsAdapter.ViewHolder>() {
+): RecyclerView.Adapter<RecommendationsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: DestinationItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: RecomendationModel) {
+        fun bind(item: RecommendationModel) {
             binding.apply{
                 tvTitle.text = item.title
                 tvSubtitle.text = item.subTitle
